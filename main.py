@@ -1,27 +1,27 @@
 import numpy as  np
 import matplotlib.pyplot as  plt
 from scipy.constants import hbar,m_e
-plt.ion()
+
 
 a = 1e-9 
-n = 2
-x = np.linspace(0,a,1000)
-A = np.sqrt(2/a)
-theta = (n * np.pi/a) * x
-psi = A * np.sin(theta)
+# n = 2
+# x = np.linspace(0,a,1000)
+# A = np.sqrt(2/a)
+# theta = (n * np.pi/a) * x
+# psi = A * np.sin(theta)
 
-energy = (n**2 * np.pi**2 * hbar**2) / (2*m_e * a**2)
+# energy = (n**2 * np.pi**2 * hbar**2) / (2*m_e * a**2)
 
-print("allowed energy levels: ", energy)
+# print("allowed energy levels: ", energy)
 
-plt.plot(psi)
-plt.xlabel("X")
-plt.ylabel("psi(x)")
-plt.title("Infinite Square Well 1D")
-plt.grid()
-plt.show()
+# plt.plot(psi)
+# plt.xlabel("X")
+# plt.ylabel("psi(x)")
+# plt.title("Infinite Square Well 1D")
+# plt.grid()
+# plt.show()
 
-plt.close()
+# plt.close()
 
 def PlotPsi(n):
     x = np.linspace(0,a,1000)
@@ -34,6 +34,7 @@ def PlotPsi(n):
     plt.xlabel("x")
     plt.title("Infinite Square Well 1D " + "n=" + str(n))
     plt.grid(True)
+    plt.show()
 
 def EnergyLevel(n):
     energy = (n**2 * np.pi**2 * hbar**2) / (2*m_e * a**2)
@@ -75,12 +76,28 @@ def PlotEnergyForWellWidth(aMin=0.5e-9, aMax=5e-9, n=1, numberOfPoints=10):
     plt.title("Energy Level vs Well Width in Infinite Square Well")
     plt.grid(True)
     plt.show()
-   
+
+def orthogonality(n1,n2):
+    x = np.linspace(0,a,1000)
+    dx = x[1] - x[0]
+    A = np.sqrt(2/a)
+    theta1 = (n1 * np.pi/a) * x
+    theta2 = (n2 * np.pi/a) * x
+    psi1 = A * np.sin(theta1)
+    psi2 = A * np.sin(theta2)
+    
+    orthogonal = psi1 * psi2 
+    result = np.sum(orthogonal) * dx
+    print(result)
+    
+
 # Example usage:
 # PlotEnergyEvels as well width changes
-PlotEnergyForWellWidth(1e-9, 5e-9, n=1, numberOfPoints=10)
-
-# PlotPsi(2)
-
+# PlotEnergyForWellWidth(1e-9, 5e-9, n=1, numberOfPoints=10)
+# PlotPsi(3)
 # PlotEneryLevels(5)
+# orthogonality(1,2)
+
+plt.ion()
+
 
